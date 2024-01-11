@@ -1,0 +1,29 @@
+
+https://dam.flippenterprise.net/flyerkit/store/nofrills?source=hosted2&locale=en&access_token=1063f92aaf17b3dfa830cd70a685a52b&store_code=7076
+{
+  "id": 402265,
+  "name": "John's nofrills Warden Ave.",
+  "merchant_store_code": "7076",
+  "postal_code": "L3R0B5",
+  "province": "ON",
+  "city": "Markham",
+  "address": "8601 Warden Avenue",
+  "mon_open": "",
+  "mon_close": "",
+  "tue_open": "",
+  "tue_close": "",
+  "wed_open": "",
+  "wed_close": "",
+  "thu_open": "",
+  "thu_close": "",
+  "fri_open": "",
+  "fri_close": "",
+  "sat_open": "",
+  "sat_close": "",
+  "sun_open": "",
+  "sun_close": "",
+  "distance_in_unit": null,
+  "distance_unit": "km",
+  "flyer_count": 5,
+  "distance": null
+}

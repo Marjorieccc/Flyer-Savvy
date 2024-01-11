@@ -1,0 +1,128 @@
+https://dam.flippenterprise.net/flyerkit/publications/nofrills?source=hosted2&locale=en&access_token=1063f92aaf17b3dfa830cd70a685a52b&show_storefronts=true&store_code=7076
+[
+  {
+    "id": 6181971,
+    "flyer_run_id": 952987,
+    "valid_from": "2024-01-04T00:00:00-05:00",
+    "valid_to": "2024-01-10T23:59:59-05:00",
+    "available_from": "2024-01-03T00:00:00-05:00",
+    "available_to": "2024-01-10T23:59:59-05:00",
+    "postal_code": "L3R0B5",
+    "merchant_name": "No Frills",
+    "merchant_logo_url": null,
+    "deep_link": "https://www.nofrills.ca/print-flyer?flyer_run_id=952987&flyer_type_name=weeklyflyer&locale=en&postal_code=L3R0B5&store_code=7076",
+    "flyer_type_id": 3800,
+    "storefront_payload": "https://cdn-gateflipp.flippback.com/storefront-payload/952987/6181971/08c0c1b9c1e9f81ed659e19bcbb330b7b023527ea11029462fbf69621c8da0b1?merchant_id=2332",
+    "sfml_url": "https://cdn-gateflipp.flippback.com/storefront-payload/952987/6181971/08c0c1b9c1e9f81ed659e19bcbb330b7b023527ea11029462fbf69621c8da0b1?merchant_id=2332",
+    "pdf_url": "https://f.wishabi.net/flyers/40138046/c7fec2dee1b706bf.pdf",
+    "name": "Weekly Flyer",
+    "flyer_type": "weeklyflyer",
+    "external_display_name": "Weekly Flyer - Valid Thursday January 4 - Wednesday January 10",
+    "locale": "en",
+    "first_page_thumbnail_400h_url": "https://f.wishabi.net/flyers/6181971/stock_premium/1704487282.jpg",
+    "storefront_images": {
+      "carousel_organic": "https://f.wishabi.net/flyers/6181971/storefront_carousel_organic/1704487282.jpg"
+    },
+    "correction_notices": []
+  },
+  {
+    "id": 6181974,
+    "flyer_run_id": 953135,
+    "valid_from": "2024-01-04T00:00:00-05:00",
+    "valid_to": "2024-01-10T23:59:59-05:00",
+    "available_from": "2024-01-03T00:00:00-05:00",
+    "available_to": "2024-01-10T23:59:59-05:00",
+    "postal_code": "L3R0B5",
+    "merchant_name": "No Frills",
+    "merchant_logo_url": null,
+    "deep_link": "https://www.nofrills.ca/print-flyer?flyer_run_id=953135&flyer_type_name=globalfoodsflyer&locale=en&postal_code=L3R0B5&store_code=7076",
+    "flyer_type_id": 9375,
+    "storefront_payload": "https://cdn-gateflipp.flippback.com/storefront-payload/953135/6181974/16454f8cd93b664dfe91e31b814693bfb8ea2af8bbe8a5feeba54ff206c6b3e9?merchant_id=2332",
+    "sfml_url": "https://cdn-gateflipp.flippback.com/storefront-payload/953135/6181974/16454f8cd93b664dfe91e31b814693bfb8ea2af8bbe8a5feeba54ff206c6b3e9?merchant_id=2332",
+    "pdf_url": "https://f.wishabi.net/flyers/40138068/650430cc6f0b23b4.pdf",
+    "name": "Global Foods Flyer",
+    "flyer_type": "globalfoodsflyer",
+    "external_display_name": "Weekly Flyer - Valid Thursday, January 4 - Wednesday, January 10",
+    "locale": "en",
+    "first_page_thumbnail_400h_url": "https://f.wishabi.net/flyers/6181974/stock_premium/1704487208.jpg",
+    "storefront_images": {
+      "carousel_organic": "https://f.wishabi.net/flyers/6181974/storefront_carousel_organic/1704487208.jpg"
+    },
+    "correction_notices": []
+  },
+  {
+    "id": 6227749,
+    "flyer_run_id": 952988,
+    "valid_from": "2024-01-11T00:00:00-05:00",
+    "valid_to": "2024-01-17T23:59:59-05:00",
+    "available_from": "2024-01-10T00:00:00-05:00",
+    "available_to": "2024-01-17T23:59:59-05:00",
+    "postal_code": "L3R0B5",
+    "merchant_name": "No Frills",
+    "merchant_logo_url": null,
+    "deep_link": "https://www.nofrills.ca/print-flyer?flyer_run_id=952988&flyer_type_name=weeklyflyer&locale=en&postal_code=L3R0B5&store_code=7076",
+    "flyer_type_id": 3800,
+    "storefront_payload": "https://cdn-gateflipp.flippback.com/storefront-payload/952988/6227749/f47fc6445c906de28ef45e670d20d5daded1d7f0ff0548cfca77c00cf082982a?merchant_id=2332",
+    "sfml_url": "https://cdn-gateflipp.flippback.com/storefront-payload/952988/6227749/f47fc6445c906de28ef45e670d20d5daded1d7f0ff0548cfca77c00cf082982a?merchant_id=2332",
+    "pdf_url": "https://f.wishabi.net/flyers/40458492/4d29458376f5a151.pdf",
+    "name": "Weekly Flyer",
+    "flyer_type": "weeklyflyer",
+    "external_display_name": "Weekly Flyer - Valid Thursday, January 11 - Wednesday, January 17",
+    "locale": "en",
+    "first_page_thumbnail_400h_url": "https://f.wishabi.net/flyers/6227749/stock_premium/1704831856.jpg",
+    "storefront_images": {
+      "carousel_organic": "https://f.wishabi.net/flyers/6227749/storefront_carousel_organic/1704831856.jpg"
+    },
+    "correction_notices": []
+  },
+  {
+    "id": 6227766,
+    "flyer_run_id": 953136,
+    "valid_from": "2024-01-11T00:00:00-05:00",
+    "valid_to": "2024-01-17T23:59:59-05:00",
+    "available_from": "2024-01-10T00:00:00-05:00",
+    "available_to": "2024-01-17T23:59:59-05:00",
+    "postal_code": "L3R0B5",
+    "merchant_name": "No Frills",
+    "merchant_logo_url": null,
+    "deep_link": "https://www.nofrills.ca/print-flyer?flyer_run_id=953136&flyer_type_name=globalfoodsflyer&locale=en&postal_code=L3R0B5&store_code=7076",
+    "flyer_type_id": 9375,
+    "storefront_payload": "https://cdn-gateflipp.flippback.com/storefront-payload/953136/6227766/e5034c6fbafce2eaded69be38525200dad5dbb9f21f1516fc09ed3592b2e1fa0?merchant_id=2332",
+    "sfml_url": "https://cdn-gateflipp.flippback.com/storefront-payload/953136/6227766/e5034c6fbafce2eaded69be38525200dad5dbb9f21f1516fc09ed3592b2e1fa0?merchant_id=2332",
+    "pdf_url": "https://f.wishabi.net/flyers/40458612/fbfc02c9b82df33e.pdf",
+    "name": "Global Foods Flyer",
+    "flyer_type": "globalfoodsflyer",
+    "external_display_name": "Happy Lunar New Year",
+    "locale": "en",
+    "first_page_thumbnail_400h_url": "https://f.wishabi.net/flyers/6227766/stock_premium/1704733825.jpg",
+    "storefront_images": {
+      "carousel_organic": "https://f.wishabi.net/flyers/6227766/storefront_carousel_organic/1704733825.jpg"
+    },
+    "correction_notices": []
+  },
+  {
+    "id": 6197262,
+    "flyer_run_id": 958743,
+    "valid_from": "2023-12-28T00:00:00-05:00",
+    "valid_to": "2024-01-24T23:59:59-05:00",
+    "available_from": "2023-12-27T00:00:00-05:00",
+    "available_to": "2024-01-24T23:59:59-05:00",
+    "postal_code": "L3R0B5",
+    "merchant_name": "No Frills",
+    "merchant_logo_url": null,
+    "deep_link": "https://www.nofrills.ca/print-flyer?flyer_run_id=958743&flyer_type_name=weeklyflyer&locale=en&postal_code=L3R0B5&store_code=7076",
+    "flyer_type_id": 3800,
+    "storefront_payload": "https://cdn-gateflipp.flippback.com/storefront-payload/958743/6197262/63c50718621eefd369ee2d7cbd5c4643d330aa7bef615c2a3d763140df68b73c?merchant_id=2332",
+    "sfml_url": "https://cdn-gateflipp.flippback.com/storefront-payload/958743/6197262/63c50718621eefd369ee2d7cbd5c4643d330aa7bef615c2a3d763140df68b73c?merchant_id=2332",
+    "pdf_url": "https://f.wishabi.net/flyers/40245084/8b50b910a602e19a.pdf",
+    "name": "Weekly Flyer",
+    "flyer_type": "weeklyflyer",
+    "external_display_name": "Week 1-4 No Name Book - Valid Thursday, December 28 - Wednesday, January 24",
+    "locale": "en",
+    "first_page_thumbnail_400h_url": "https://f.wishabi.net/flyers/6197262/stock_premium/1703265324.jpg",
+    "storefront_images": {
+      "carousel_organic": "https://f.wishabi.net/flyers/6197262/storefront_carousel_organic/1703265324.jpg"
+    },
+    "correction_notices": []
+  }
+]
