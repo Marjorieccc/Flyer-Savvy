@@ -1,0 +1,1 @@
+This folder contains the development logs documenting the progress of our project. Here, you will find links to our Medium posts, where we discuss the decisions made, challenges faced, and solutions implemented throughout the development process. These logs serve as a detailed account of our journey from concept to completion.

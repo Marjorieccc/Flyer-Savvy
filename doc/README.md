@@ -1,0 +1,1 @@
+This folder houses the formal documentation and workflow guidelines for our project. It includes detailed descriptions of the project's architecture, development processes, and deployment procedures. Refer to this folder for comprehensive information on how to contribute to, maintain, and scale the project.

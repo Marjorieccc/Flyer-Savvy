@@ -1,0 +1,1 @@
+This folder stores the screenshots of our responsive application. These images demonstrate how the application adapts across different devices and screen sizes, showcasing the flexibility and usability of the user interface. Use this folder as a visual reference for the design and layout of our app.

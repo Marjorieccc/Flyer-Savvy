@@ -1,0 +1,1 @@
+This folder contains the core Next.js application that powers our project. It includes all the front-end components, pages, and API routes that make up the user interface and server-side logic. The application is designed with a focus on performance, scalability, and ease of development. Explore this folder to dive into the structure and functionality of our Next.js app.
