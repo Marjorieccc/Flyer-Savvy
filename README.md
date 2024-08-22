@@ -34,11 +34,9 @@
 | Framework / Library                      | Purpose                           |
 | ---------------------------------------- | --------------------------------- |
 | [![Node.js][Node.js]][Node-url]          | Backend runtime environment       |
-| [![Express.js][Express.js]][Express-url] | Node.js web application framework |
 | [![MySQL][MySQL]][MySQL-url]             | Store flyer details               |
 | [![Drizzle][Drizzle]][Drizzle-url]       | ODM for MySQL and Node.js         |
 | [![Docker][Docker]][Docker-url]          | Containerization platform         |
-| [![Firebase][Firebase]][Firebase-url]    | Application hosting platform      |
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
