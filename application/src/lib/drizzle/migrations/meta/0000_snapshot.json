@@ -1,0 +1,535 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "prevId": "",
+  "version": "5",
+  "dialect": "mysql",
+  "tables": {
+    "flyer": {
+      "name": "flyer",
+      "columns": {
+        "flyer_id": {
+          "autoincrement": true,
+          "name": "flyer_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "imported_flyer_id": {
+          "autoincrement": false,
+          "name": "imported_flyer_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "valid_from": {
+          "autoincrement": false,
+          "name": "valid_from",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "valid_to": {
+          "autoincrement": false,
+          "name": "valid_to",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {
+        "flyer_flyer_id": {
+          "name": "flyer_flyer_id",
+          "columns": [
+            "flyer_id"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "flyer_image": {
+      "name": "flyer_image",
+      "columns": {
+        "flyer_image_id": {
+          "autoincrement": true,
+          "name": "flyer_image_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "flyer_image_url": {
+          "autoincrement": false,
+          "name": "flyer_image_url",
+          "type": "varchar(512)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "flyer_id": {
+          "autoincrement": false,
+          "name": "flyer_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {
+        "flyer_image_flyer_image_id": {
+          "name": "flyer_image_flyer_image_id",
+          "columns": [
+            "flyer_image_id"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "flyer_image_flyer_id_flyer_flyer_id_fk": {
+          "name": "flyer_image_flyer_id_flyer_flyer_id_fk",
+          "tableFrom": "flyer_image",
+          "tableTo": "flyer",
+          "columnsFrom": [
+            "flyer_id"
+          ],
+          "columnsTo": [
+            "flyer_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "flyer_store": {
+      "name": "flyer_store",
+      "columns": {
+        "flyer_id": {
+          "autoincrement": false,
+          "name": "flyer_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "store_id": {
+          "autoincrement": false,
+          "name": "store_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {
+        "flyer_store_flyer_id_store_id": {
+          "name": "flyer_store_flyer_id_store_id",
+          "columns": [
+            "flyer_id",
+            "store_id"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "flyer_store_flyer_id_flyer_flyer_id_fk": {
+          "name": "flyer_store_flyer_id_flyer_flyer_id_fk",
+          "tableFrom": "flyer_store",
+          "tableTo": "flyer",
+          "columnsFrom": [
+            "flyer_id"
+          ],
+          "columnsTo": [
+            "flyer_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "flyer_store_store_id_store_store_id_fk": {
+          "name": "flyer_store_store_id_store_store_id_fk",
+          "tableFrom": "flyer_store",
+          "tableTo": "store",
+          "columnsFrom": [
+            "store_id"
+          ],
+          "columnsTo": [
+            "store_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "grocery": {
+      "name": "grocery",
+      "columns": {
+        "grocery_id": {
+          "autoincrement": true,
+          "name": "grocery_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "grocery_name": {
+          "autoincrement": false,
+          "name": "grocery_name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {
+        "grocery_grocery_id": {
+          "name": "grocery_grocery_id",
+          "columns": [
+            "grocery_id"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "point_history": {
+      "name": "point_history",
+      "columns": {
+        "point_history_id": {
+          "autoincrement": true,
+          "name": "point_history_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "point": {
+          "autoincrement": false,
+          "name": "point",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "product_id": {
+          "autoincrement": false,
+          "name": "product_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "flyer_id": {
+          "autoincrement": false,
+          "name": "flyer_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {
+        "point_history_point_history_id": {
+          "name": "point_history_point_history_id",
+          "columns": [
+            "point_history_id"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "point_history_flyer_id_flyer_flyer_id_fk": {
+          "name": "point_history_flyer_id_flyer_flyer_id_fk",
+          "tableFrom": "point_history",
+          "tableTo": "flyer",
+          "columnsFrom": [
+            "flyer_id"
+          ],
+          "columnsTo": [
+            "flyer_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "point_history_product_id_product_product_id_fk": {
+          "name": "point_history_product_id_product_product_id_fk",
+          "tableFrom": "point_history",
+          "tableTo": "product",
+          "columnsFrom": [
+            "product_id"
+          ],
+          "columnsTo": [
+            "product_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "price_history": {
+      "name": "price_history",
+      "columns": {
+        "price_history_id": {
+          "autoincrement": true,
+          "name": "price_history_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "price": {
+          "autoincrement": false,
+          "name": "price",
+          "type": "double",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "unit": {
+          "autoincrement": false,
+          "name": "unit",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "price_per_quantity": {
+          "autoincrement": false,
+          "name": "price_per_quantity",
+          "type": "double",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "quantity": {
+          "autoincrement": false,
+          "name": "quantity",
+          "type": "double",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "member_price": {
+          "autoincrement": false,
+          "name": "member_price",
+          "type": "double",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "original_price": {
+          "autoincrement": false,
+          "name": "original_price",
+          "type": "double",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "product_id": {
+          "autoincrement": false,
+          "name": "product_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "flyer_id": {
+          "autoincrement": false,
+          "name": "flyer_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {
+        "price_history_price_history_id": {
+          "name": "price_history_price_history_id",
+          "columns": [
+            "price_history_id"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "price_history_flyer_id_flyer_flyer_id_fk": {
+          "name": "price_history_flyer_id_flyer_flyer_id_fk",
+          "tableFrom": "price_history",
+          "tableTo": "flyer",
+          "columnsFrom": [
+            "flyer_id"
+          ],
+          "columnsTo": [
+            "flyer_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "price_history_product_id_product_product_id_fk": {
+          "name": "price_history_product_id_product_product_id_fk",
+          "tableFrom": "price_history",
+          "tableTo": "product",
+          "columnsFrom": [
+            "product_id"
+          ],
+          "columnsTo": [
+            "product_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "product": {
+      "name": "product",
+      "columns": {
+        "product_id": {
+          "autoincrement": true,
+          "name": "product_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "imported_product_code": {
+          "autoincrement": false,
+          "name": "imported_product_code",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "product_name": {
+          "autoincrement": false,
+          "name": "product_name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "brand": {
+          "autoincrement": false,
+          "name": "brand",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "package_size": {
+          "autoincrement": false,
+          "name": "package_size",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "package_unit": {
+          "autoincrement": false,
+          "name": "package_unit",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_url": {
+          "autoincrement": false,
+          "name": "image_url",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "grocery_id": {
+          "autoincrement": false,
+          "name": "grocery_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {
+        "product_product_id": {
+          "name": "product_product_id",
+          "columns": [
+            "product_id"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "product_grocery_id_grocery_grocery_id_fk": {
+          "name": "product_grocery_id_grocery_grocery_id_fk",
+          "tableFrom": "product",
+          "tableTo": "grocery",
+          "columnsFrom": [
+            "grocery_id"
+          ],
+          "columnsTo": [
+            "grocery_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "store": {
+      "name": "store",
+      "columns": {
+        "store_id": {
+          "autoincrement": true,
+          "name": "store_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "imported_store_id": {
+          "autoincrement": false,
+          "name": "imported_store_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "store_name": {
+          "autoincrement": false,
+          "name": "store_name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "address": {
+          "autoincrement": false,
+          "name": "address",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "postal_code": {
+          "autoincrement": false,
+          "name": "postal_code",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "grocery_id": {
+          "autoincrement": false,
+          "name": "grocery_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {
+        "store_store_id": {
+          "name": "store_store_id",
+          "columns": [
+            "store_id"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "store_grocery_id_grocery_grocery_id_fk": {
+          "name": "store_grocery_id_grocery_grocery_id_fk",
+          "tableFrom": "store",
+          "tableTo": "grocery",
+          "columnsFrom": [
+            "grocery_id"
+          ],
+          "columnsTo": [
+            "grocery_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    }
+  },
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "tables": {},
+    "indexes": {}
+  }
+}
