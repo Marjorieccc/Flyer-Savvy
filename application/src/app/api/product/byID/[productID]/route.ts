@@ -1,7 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as Action from '@/action/product'
 
-export async function GET(request: NextRequest, {params}:{ params: { productID?: string } }) {
+/**
+ * Retrieves a specific product by its ID
+ *
+ * @param request - The incoming Next.js request
+ * @param params - URL parameters containing the productID
+ * @param params.productID - The ID of the product to retrieve (string that will be parsed to integer)
+ * @returns A NextResponse containing:
+ *  - 200 status with JSON product object on success
+ *  - 400 status if productID is missing or invalid
+ *  - 404 status if product with specified ID is not found
+ *  - 500 status if server error occurs during retrieval
+ */
+export async function GET(
+    request: NextRequest, 
+    {params}: { params: { productID?: string } }
+): Promise<NextResponse> {
     const productID = params?.productID;
     const productIDInt = productID ? parseInt(productID, 10) : NaN;
     if(!productID || isNaN(productIDInt)){
