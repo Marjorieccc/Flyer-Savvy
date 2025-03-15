@@ -1,7 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as Action from '@/action/flyer'
 
-export async function GET(request: NextRequest) { // TODO: request object can be used to authenticate token / header
+
+/**
+ * Retrieves all flyers from the database
+ *
+ * @param request - The incoming Next.js request
+ * @returns A NextResponse containing:
+ *  - 200 status with JSON array of all flyers on success
+ *  - 404 status if no flyers are found
+ *  - 500 status if server error occurs during retrieval
+*/
+export async function GET(request: NextRequest):Promise<NextResponse>  { 
     try{
         const flyers = await Action.findAllFlyers();
         if (!flyers || flyers.length === 0) {
