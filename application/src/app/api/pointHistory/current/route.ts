@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as Action from '@/action/pointHistory'
-
+import * as Response from '@/lib/http/responses'
 /**
  * Retrieves all current point history records from the database
  *
@@ -12,22 +12,17 @@ import * as Action from '@/action/pointHistory'
  */
 export async function GET(request: NextRequest): Promise<NextResponse> {
     try{
-        const pointHistories = await Action.findCurrentPointHistory()
+        const pointHistories = await Action.findCurrentPointHistory();
+
         if (!pointHistories || pointHistories.length === 0) {
-            return new NextResponse(JSON.stringify({ message: 'No current point records found' }), {
-              status: 404,
-              headers: { 'Content-Type': 'application/json' },
-            });
+            return Response.notFoundResponse(404);
           }
-        return new NextResponse(JSON.stringify(pointHistories), {
-            status: 200,
-            headers: { 'Content-Type': 'application/json' },
-        });
+
+        return Response.successReponse(pointHistories, 200);
 
     } catch(error){
-        return new NextResponse(JSON.stringify({ error: `Failed to get point records : ${error}` }), {
-            status: 500,
-            headers: { 'Content-Type': 'application/json' },
-        });
+        // This is temporarily approach, it will be handle in Logging entry later on
+        console.error('Server error:', error);
+        return Response.serverErrorReponse(500);
     }
 }

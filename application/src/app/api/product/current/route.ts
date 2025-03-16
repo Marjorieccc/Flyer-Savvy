@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as Action from '@/action/product'
+import * as Response from '@/lib/http/responses'
 
 /**
  * Retrieves all currently available products (on sale)
@@ -12,22 +13,17 @@ import * as Action from '@/action/product'
  */
 export async function GET(request: NextRequest): Promise<NextResponse> {
     try{
-        const products = await Action.findCurrentProducts()
+        const products = await Action.findCurrentProducts();
+        
         if (!products || products.length === 0) {
-            return new NextResponse(JSON.stringify({ message: 'No on sale product found' }), {
-              status: 404,
-              headers: { 'Content-Type': 'application/json' },
-            });
-          }
-        return new NextResponse(JSON.stringify(products), {
-            status: 200,
-            headers: { 'Content-Type': 'application/json' },
-        });
+            return Response.notFoundResponse(404);
+        }
+
+        return Response.successReponse(products, 200);
 
     } catch(error){
-        return new NextResponse(JSON.stringify({ error: `Failed to get on sale products : ${error}` }), {
-            status: 500,
-            headers: { 'Content-Type': 'application/json' },
-        });
+        // This is temporarily approach, it will be handle in Logging entry later on
+        console.error('Server error:', error);
+        return Response.serverErrorReponse(500);
     }
 }

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as Action from '@/action/priceHistory'
+import * as Response from '@/lib/http/responses'
 
 /**
  * Retrieves all current price history records from the database
@@ -12,22 +13,17 @@ import * as Action from '@/action/priceHistory'
  */
 export async function GET(request: NextRequest): Promise<NextResponse> {
     try{
-        const priceHistories = await Action.findCurrentPriceHistory()
+        const priceHistories = await Action.findCurrentPriceHistory();
+
         if (!priceHistories || priceHistories.length === 0) {
-            return new NextResponse(JSON.stringify({ message: 'No current price records found' }), {
-              status: 404,
-              headers: { 'Content-Type': 'application/json' },
-            });
-          }
-        return new NextResponse(JSON.stringify(priceHistories), {
-            status: 200,
-            headers: { 'Content-Type': 'application/json' },
-        });
+            return Response.notFoundResponse(404);
+        }
+
+        return Response.successReponse(priceHistories, 200);
 
     } catch(error){
-        return new NextResponse(JSON.stringify({ error: `Failed to get price records : ${error}` }), {
-            status: 500,
-            headers: { 'Content-Type': 'application/json' },
-        });
+        // This is temporarily approach, it will be handle in Logging entry later on
+        console.error('Server error:', error);
+        return Response.serverErrorReponse(500);
     }
 }

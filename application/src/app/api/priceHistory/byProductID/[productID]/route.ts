@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as Action from '@/action/priceHistory'
+import * as Response from '@/lib/http/responses'
 
 /**
  * Retrieves price history records for a specific product
@@ -19,30 +20,23 @@ export async function GET(
 ): Promise<NextResponse> {
     const productID = params?.productID;
     const productIDInt = productID ? parseInt(productID, 10) : NaN;
+
     if(!productID || isNaN(productIDInt)){
-        return new NextResponse(JSON.stringify({ message: 'Product ID is required' }), {
-            status: 400,
-            headers: { 'Content-Type': 'application/json' },
-        });
+        return Response.badRequestResponse(400);
     }
+
     try{
         const priceHistory = await Action.findPriceHistoryByProduct(productIDInt);
-        if (!priceHistory) {
-            return new NextResponse(JSON.stringify({ message: 'Price history record not found' }), {
-              status: 404,
-              headers: { 'Content-Type': 'application/json' },
-            });
-          }
 
-        return new NextResponse(JSON.stringify(priceHistory), {
-            status: 200,
-            headers: { 'Content-Type': 'application/json' },
-        });
+        if (!priceHistory) {
+            return Response.notFoundResponse(404);
+        }
+        
+        return Response.successReponse(priceHistory, 200);
 
     } catch(error){
-        return new NextResponse(JSON.stringify({ error: `Failed to get Price history record : ${error}` }), {
-            status: 500,
-            headers: { 'Content-Type': 'application/json' },
-          });
+        // This is temporarily approach, it will be handle in Logging entry later on
+        console.error('Server error:', error);
+        return Response.serverErrorReponse(500);
     }
 }

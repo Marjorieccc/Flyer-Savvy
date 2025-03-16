@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as Action from '@/action/flyer'
-
+import * as Response from '@/lib/http/responses'
 
 /**
  * Retrieves all flyers from the database
@@ -14,21 +14,15 @@ import * as Action from '@/action/flyer'
 export async function GET(request: NextRequest):Promise<NextResponse>  { 
     try{
         const flyers = await Action.findAllFlyers();
+        
         if (!flyers || flyers.length === 0) {
-            return new NextResponse(JSON.stringify({ message: 'No flyers found' }), {
-              status: 404,
-              headers: { 'Content-Type': 'application/json' },
-            });
-          }
-        return new NextResponse(JSON.stringify(flyers), {
-            status: 200,
-            headers: { 'Content-Type': 'application/json' },
-        });
+            return Response.notFoundResponse(404);
+        }
+        return Response.successReponse(flyers, 200);
 
     } catch(error){
-        return new NextResponse(JSON.stringify({ error: `Failed to get flyers : ${error}` }), {
-            status: 500,
-            headers: { 'Content-Type': 'application/json' },
-        });
+        // This is temporarily approach, it will be handle in Logging entry later on
+        console.error('Server error:', error);
+        return Response.serverErrorReponse(500);
     }
 }

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as Action from '@/action/flyer'
+import * as Response from '@/lib/http/responses'
 
 /**
  * Retrieves a specific flyer by its ID
@@ -18,30 +19,22 @@ export async function GET(request: NextRequest,
 ):Promise<NextResponse> {
     const flyerID = params?.flyerID;
     const flyerIDInt = flyerID ? parseInt(flyerID, 10) : NaN;
-    if(!flyerID || isNaN(flyerIDInt)){
-        return new NextResponse(JSON.stringify({ message: 'Flyer ID is required' }), {
-            status: 400,
-            headers: { 'Content-Type': 'application/json' },
-        });
+
+    if(!flyerID || isNaN(flyerIDInt)) {
+        return Response.badRequestResponse(400);
     }
+    
     try{
         const flyer = await Action.findFlyer(flyerIDInt);
         if (!flyer) {
-            return new NextResponse(JSON.stringify({ message: 'Flyer not found' }), {
-              status: 404,
-              headers: { 'Content-Type': 'application/json' },
-            });
-          }
+            return Response.notFoundResponse(404);
+        }
 
-        return new NextResponse(JSON.stringify(flyer), {
-            status: 200,
-            headers: { 'Content-Type': 'application/json' },
-        });
+        return Response.successReponse(flyer, 200);
 
     } catch(error){
-        return new NextResponse(JSON.stringify({ error: `Failed to get flyer : ${error}` }), {
-            status: 500,
-            headers: { 'Content-Type': 'application/json' },
-          });
+        // This is temporarily approach, it will be handle in Logging entry later on
+        console.error('Server error:', error);
+        return Response.serverErrorReponse(500);
     }
 }
