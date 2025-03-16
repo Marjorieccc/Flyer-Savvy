@@ -12,13 +12,13 @@ export function successReponse(data: any, status:number):NextResponse {
 }
 
 export function badRequestResponse(status : number): NextResponse {
-    return jsonResponse({ success: false }, status);
+    return jsonResponse(status);
 }
 
 export function notFoundResponse(status : number): NextResponse {
-    return jsonResponse({ success: false }, status);
+    return jsonResponse(status);
 }
 
 export function serverErrorReponse(status : number):NextResponse {
-    return jsonResponse({ success: false }, status);
+    return jsonResponse(status);
 }
