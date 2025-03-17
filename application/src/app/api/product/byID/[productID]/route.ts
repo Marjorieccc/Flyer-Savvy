@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as Action from '@/action/product'
+import * as Response from '@/lib/http/responses'
 
 /**
  * Retrieves a specific product by its ID
@@ -19,30 +20,21 @@ export async function GET(
 ): Promise<NextResponse> {
     const productID = params?.productID;
     const productIDInt = productID ? parseInt(productID, 10) : NaN;
+    
     if(!productID || isNaN(productIDInt)){
-        return new NextResponse(JSON.stringify({ message: 'Product ID is required' }), {
-            status: 400,
-            headers: { 'Content-Type': 'application/json' },
-        });
+        return Response.badRequestResponse(400);
     }
     try{
         const product = await Action.findProduct(productIDInt);
-        if (!product) {
-            return new NextResponse(JSON.stringify({ message: 'Product not found' }), {
-              status: 404,
-              headers: { 'Content-Type': 'application/json' },
-            });
-          }
 
-        return new NextResponse(JSON.stringify(product), {
-            status: 200,
-            headers: { 'Content-Type': 'application/json' },
-        });
+        if (!product) {
+            return Response.notFoundResponse(404);
+        }
+        return Response.successReponse(product, 200);
 
     } catch(error){
-        return new NextResponse(JSON.stringify({ error: `Failed to get product : ${error}` }), {
-            status: 500,
-            headers: { 'Content-Type': 'application/json' },
-          });
+        // This is temporarily approach, it will be handle in Logging entry later on
+        console.error('Server error:', error);
+        return Response.serverErrorReponse(500);
     }
 }

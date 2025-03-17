@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as Action from '@/action/pointHistory'
+import * as Response from '@/lib/http/responses'
 
 /**
  * Retrieves point history records related to a specific product
@@ -21,33 +22,21 @@ export async function GET(
     const productIDInt = productID ? parseInt(productID, 10) : NaN;
     
     if (!productID || isNaN(productIDInt)) {
-      return new NextResponse(
-        JSON.stringify({ message: 'A valid integer Product ID is required' }),
-        {
-          status: 400,
-          headers: { 'Content-Type': 'application/json' },
-        }
-      );
+        return Response.badRequestResponse(400);
     }
     
     try{
         const pointHistory = await Action.findPointHistoryByProduct(productIDInt);
+        
         if (!pointHistory) {
-            return new NextResponse(JSON.stringify({ message: 'Point history record not found' }), {
-              status: 404,
-              headers: { 'Content-Type': 'application/json' },
-            });
-          }
-
-        return new NextResponse(JSON.stringify(pointHistory), {
-            status: 200,
-            headers: { 'Content-Type': 'application/json' },
-        });
+            return Response.notFoundResponse(404);
+        }
+        
+        return Response.successReponse(pointHistory, 200);
 
     } catch(error){
-        return new NextResponse(JSON.stringify({ error: `Failed to get Point history record : ${error}` }), {
-            status: 500,
-            headers: { 'Content-Type': 'application/json' },
-          });
+        // This is temporarily approach, it will be handle in Logging entry later on
+        console.error('Server error:', error);
+        return Response.serverErrorReponse(500);
     }
 }
