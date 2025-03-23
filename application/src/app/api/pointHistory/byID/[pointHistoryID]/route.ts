@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import * as Action from '@/action/pointHistory'
+import * as Service from '@/service/server/pointHistory'
 import * as Response from '@/lib/http/responses'
 
 /**
@@ -26,7 +26,7 @@ export async function GET(
     }
     
     try{
-        const pointHistory = await Action.findPointHistory(pointHistoryInt);
+        const pointHistory = await Service.findPointHistory(pointHistoryInt);
         
         if (!pointHistory) {
             return Response.notFoundResponse(404);

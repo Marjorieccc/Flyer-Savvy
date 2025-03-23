@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import * as Action from '@/action/flyer'
+import * as Service from '@/service/server/flyer'
 import * as Response from '@/lib/http/responses'
 
 /**
@@ -21,19 +21,21 @@ export async function GET(request: NextRequest,
     const flyerIDInt = flyerID ? parseInt(flyerID, 10) : NaN;
 
     if(!flyerID || isNaN(flyerIDInt)) {
+        //will add error message in Logging entry later on
         return Response.badRequestResponse(400);
     }
     
     try{
-        const flyer = await Action.findFlyer(flyerIDInt);
+        const flyer = await Service.findFlyer(flyerIDInt);
         if (!flyer) {
+            //will add error message in Logging entry later on
             return Response.notFoundResponse(404);
         }
 
         return Response.successReponse(flyer, 200);
 
     } catch(error){
-        // This is temporarily approach, it will be handle in Logging entry later on
+        //will be handle in Logging entry later on
         console.error('Server error:', error);
         return Response.serverErrorReponse(500);
     }

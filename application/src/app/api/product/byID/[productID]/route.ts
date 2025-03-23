@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import * as Action from '@/action/product'
+import * as Service from '@/service/server/product'
 import * as Response from '@/lib/http/responses'
 
 /**
@@ -25,7 +25,7 @@ export async function GET(
         return Response.badRequestResponse(400);
     }
     try{
-        const product = await Action.findProduct(productIDInt);
+        const product = await Service.findProduct(productIDInt);
 
         if (!product) {
             return Response.notFoundResponse(404);

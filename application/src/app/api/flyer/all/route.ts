@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import * as Action from '@/action/flyer'
+import * as Service from '@/service/server/flyer'
 import * as Response from '@/lib/http/responses'
 
 /**
@@ -13,7 +13,7 @@ import * as Response from '@/lib/http/responses'
 */
 export async function GET(request: NextRequest):Promise<NextResponse>  { 
     try{
-        const flyers = await Action.findAllFlyers();
+        const flyers = await Service.findAllFlyers();
         
         if (!flyers || flyers.length === 0) {
             return Response.notFoundResponse(404);
