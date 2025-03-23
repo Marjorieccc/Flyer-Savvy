@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import * as Action from '@/action/pointHistory'
-import * as Response from '@/lib/http/responses'
+import * as Service from '@/service/server/pointHistory';
+import * as Response from '@/lib/http/responses';
 
 /**
  * Retrieves point history records related to a specific product
@@ -26,7 +26,7 @@ export async function GET(
     }
     
     try{
-        const pointHistory = await Action.findPointHistoryByProduct(productIDInt);
+        const pointHistory = await Service.findPointHistoryByProduct(productIDInt);
         
         if (!pointHistory) {
             return Response.notFoundResponse(404);

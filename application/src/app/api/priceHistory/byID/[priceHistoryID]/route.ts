@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import * as Action from '@/action/priceHistory'
+import * as Service from '@/service/server/priceHistory'
 import * as Response from '@/lib/http/responses'
 
 /**
@@ -21,7 +21,7 @@ export async function GET(request: NextRequest, {params}:{ params: { priceHistor
     }
 
     try{
-        const priceHistory = await Action.findPriceHistory(priceHistoryIDInt);
+        const priceHistory = await Service.findPriceHistory(priceHistoryIDInt);
         
         if (!priceHistory) {
             return Response.notFoundResponse(404);
