@@ -1,6 +1,6 @@
 // This file defines the database schema using Drizzle ORM for various entities.
 
-import { mysqlTable, int, double,varchar, date, primaryKey} from 'drizzle-orm/mysql-core';
+import { mysqlTable, int, double,varchar, date, primaryKey, index} from 'drizzle-orm/mysql-core';
 
 export const grocery = mysqlTable('grocery', {
 	grocery_id: int('grocery_id').primaryKey().autoincrement().notNull(),
@@ -21,7 +21,7 @@ export const flyer = mysqlTable('flyer', {
 	imported_flyer_id: varchar('imported_flyer_id', { length: 255 }),
 	valid_from: date('valid_from', { mode: 'date' }),
 	valid_to: date('valid_to', { mode: 'date' }),
-});
+	});
 
 export const flyer_image = mysqlTable('flyer_image', {
 	flyer_image_id: int('flyer_image_id').primaryKey().autoincrement().notNull(),
@@ -29,13 +29,14 @@ export const flyer_image = mysqlTable('flyer_image', {
 	flyer_id: int('flyer_id').references(() => flyer.flyer_id),
 });
 
-export const flyer_store = mysqlTable('flyer_store', {
-	flyer_id: int('flyer_id').references(() => flyer.flyer_id),
-	store_id: int('store_id').references(() => store.store_id),
-}, (table) => {
-    return {
-      flyer_store_id: primaryKey({ columns: [table.flyer_id, table.store_id] }),
-    };
+export const flyerStore = mysqlTable("flyer_store", {
+	flyer_id: int("flyer_id").notNull().references(() => flyer.flyer_id),
+	store_id: int("store_id").notNull().references(() => store.store_id),
+},
+(table) => {
+	return {
+		flyerStoreFlyerIdStoreId: primaryKey({ columns: [table.flyer_id, table.store_id], name: "flyer_store_flyer_id_store_id"}),
+	}
 });
 
 export const product = mysqlTable('product', {
@@ -59,11 +60,20 @@ export const price_history = mysqlTable('price_history', {
 	original_price: double('original_price'),
 	product_id: int('product_id').references(() => product.product_id),
 	flyer_id: int('flyer_id').references(() => flyer.flyer_id),
+}, (table) => {
+	return {
+		product_id_index: index('product_id_idx').on (table.product_id)
+	};
 });
 
 export const point_history = mysqlTable('point_history', {
 	point_history_id: int('point_history_id').primaryKey().autoincrement().notNull(),
 	point: int('point'),
 	product_id: int('product_id').references(() => product.product_id),
-	flyer_id: int('flyer_id').references(() => flyer.flyer_id)
+	flyer_id: int('flyer_id').references(() => flyer.flyer_id),
+	point_details : varchar('point_details', { length: 1000 }),
+}, (table) => {
+	return {
+		product_id_index: index('product_id_idx').on (table.product_id)
+	};
 });
