@@ -24,6 +24,7 @@ export type PriceHistory ={
 export type PointHistory ={
     point_history_id: number,
     point: number | null,
+    point_details: string | null,
     product_id: number| null,
     flyer_id: number| null
 }
