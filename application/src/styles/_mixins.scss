@@ -1,0 +1,60 @@
+@use "variables" as vars;
+
+@mixin focus-visible {
+  &:focus-visible {
+    outline: 0.125rem solid var(--foreground);
+    outline-offset: 0.125rem;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin icon-button($size: 2rem) {
+  @include flex-center;
+  width: $size;
+  height: $size;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all vars.$transition-fast;
+
+  &:hover,
+  &:focus {
+    background-color: var(--gray-100);
+  }
+
+  @include focus-visible;
+}
+
+@mixin responsive-text($mobile-size, $desktop-size) {
+  font-size: $mobile-size;
+
+  @media (min-width: vars.$breakpoint-tablet) {
+    font-size: $desktop-size;
+  }
+}
+
+@mixin search-container-mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: vars.$z-modal;
+  background-color: var(--background);
+  padding: vars.$spacing-sm vars.$spacing-md;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin search-container-desktop {
+  position: relative;
+  padding: 0;
+  max-width: 45rem;
+  background-color: transparent;
+}

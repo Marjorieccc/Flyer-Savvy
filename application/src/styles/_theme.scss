@@ -1,0 +1,18 @@
+@use "variables" as vars;
+
+// Color variables for theme switching
+:root {
+  --background: #{vars.$background-light};
+  --foreground: #{vars.$foreground-light};
+  --gray-100: #{vars.$gray-100-light};
+  --gray-200: #{vars.$gray-200-light};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #{vars.$background-dark};
+    --foreground: #{vars.$foreground-dark};
+    --gray-100: #{vars.$gray-100-dark};
+    --gray-200: #{vars.$gray-200-dark};
+  }
+}
