@@ -1,15 +1,19 @@
 import { RecentSearch } from "@/types/client/search";
 import { isBrowser } from "@/helpers/checkBrowser";
+import { SearchQuery } from "@/types/client/search";
 
 /**
  * Performs the product search
  * @param {string} searchTerm - The term to search for
- * @returns {Promise<string>} Promise with search results redirect URL
+ * @returns {SearchQuery} User's recent search list and search results redirect URL
  */
-export async function search(searchTerm: string): Promise<string> {
+export function search(searchTerm: string): SearchQuery {
   // Save the search term to history
-  saveSearch(searchTerm);
-  return `/products?q=${encodeURIComponent(searchTerm)}`;
+  const recentSearch: RecentSearch[] = saveSearch(searchTerm);
+  return {
+    recentSearches: recentSearch,
+    searchURL: `/products?q=${encodeURIComponent(searchTerm)}`,
+  };
 }
 
 /**

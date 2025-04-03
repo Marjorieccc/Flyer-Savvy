@@ -1,0 +1,147 @@
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixins;
+
+.searchDropdown {
+  position: fixed;
+  top: 3.5rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--background);
+  z-index: vars.$z-dropdown;
+  overflow-y: auto;
+  animation: mobileSlideIn vars.$transition-normal;
+
+  @media (min-width: vars.$breakpoint-tablet) {
+    position: absolute;
+    top: calc(100% + vars.$spacing-sm);
+    bottom: auto;
+    max-height: 70vh;
+    border-radius: vars.$radius-md;
+    box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.1);
+    animation: fadeIn vars.$transition-fast;
+
+    @media (prefers-color-scheme: dark) {
+      box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-0.625rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mobileSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.noResults {
+  padding: vars.$spacing-xl vars.$spacing-md;
+  text-align: center;
+  color: var(--foreground);
+  opacity: 0.7;
+}
+
+.section {
+  padding: vars.$spacing-sm 0;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--gray-100);
+  }
+}
+
+.sectionHeading {
+  padding: 0.75rem vars.$spacing-md;
+  font-size: vars.$font-size-sm;
+  font-weight: 500;
+  color: var(--foreground);
+  opacity: 0.7;
+  font-family: vars.$font-family;
+  display: flex;
+  align-items: center;
+
+  @media (min-width: vars.$breakpoint-tablet) {
+    padding: vars.$spacing-sm vars.$spacing-md;
+    font-size: 0.8125rem;
+  }
+}
+
+.sectionIcon {
+  margin-right: vars.$spacing-sm;
+  opacity: 0.8;
+}
+
+.resultsList {
+  list-style-type: none;
+}
+
+.resultItem {
+  display: flex;
+}
+
+.resultButton {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.75rem vars.$spacing-md;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color vars.$transition-fast;
+  color: var(--foreground);
+  font-family: vars.$font-family;
+
+  &:hover,
+  &:focus {
+    background-color: var(--gray-100);
+  }
+
+  &:focus-visible {
+    outline: 0.125rem solid var(--foreground);
+    outline-offset: -0.125rem;
+  }
+
+  &.focused {
+    background-color: var(--gray-100);
+  }
+}
+
+.resultContent {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+.resultText {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  margin-bottom: 0.125rem;
+}
+
+.optionsButton {
+  @include mixins.icon-button;
+  margin-left: auto;
+  margin-right: vars.$spacing-sm;
+  opacity: 0.5;
+
+  &:hover,
+  &:focus {
+    opacity: 0.8;
+  }
+}

@@ -11,3 +11,9 @@ export interface SearchState {
   recentSearches: RecentSearch[];
   isLoading: boolean;
 }
+
+/** Return user recent search list and query url to a search query */
+export interface SearchQuery {
+  recentSearches: RecentSearch[];
+  searchURL: string;
+}

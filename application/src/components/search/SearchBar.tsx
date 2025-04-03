@@ -1,24 +1,23 @@
 "use client";
 
-import { useState, useRef, useEffect, KeyboardEvent } from "react";
-import { FaSearch, FaTimes } from "react-icons/fa";
-import SearchResults from "./SearchResults";
-import styles from "./SearchBar.module.sass";
-import { RecentSearch } from "@/types/client/search";
+import { useState, useRef, useEffect, KeyboardEvent, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import { loadSearch, saveSearch, search } from "@/service/api/searchService";
+import { FaSearch, FaTimes } from "react-icons/fa";
+
+import { RecentSearch } from "@/types/client/search";
+import { loadSearch, search } from "@/service/api/searchService";
+import SearchDropDown from "./SearchDropDown";
+import styles from "./SearchBar.module.scss";
 
 function SearchBar() {
-  // State for search input and UI
   const [inputState, setInputState] = useState({
     searchTerm: "",
     isFocused: false,
     showResults: false,
   });
-  // State for recent searches by users
   const [recentSearches, setRecentSearches] = useState<RecentSearch[]>([]);
 
-  const searchRef = useRef<HTMLDivElement>(null); //Reference for detecting outside clicks
+  const clickOutsideRef = useRef<HTMLDivElement>(null); //Reference for detecting outside clicks
   // const router = useRouter();
 
   // Load the recent searches from user's localStorage
@@ -28,8 +27,8 @@ function SearchBar() {
   useEffect(function addOutsideClickHandler() {
     function handleClickOutside(event: MouseEvent) {
       if (
-        searchRef.current &&
-        !searchRef.current.contains(event.target as Node)
+        clickOutsideRef.current &&
+        !clickOutsideRef.current.contains(event.target as Node)
       ) {
         setInputState((prev) => ({ ...prev, showResults: false }));
       }
@@ -67,31 +66,46 @@ function SearchBar() {
         setInputState((prev) => ({ ...prev, showResults: false }));
       }
     },
+
+    search: (e: React.FormEvent) => {
+      e.preventDefault();
+      console.log("Submit search from Search bar.");
+      performSearch(inputState.searchTerm);
+    },
+
+    cancel: () => {
+      setInputState({
+        searchTerm: "",
+        showResults: false,
+        isFocused: false,
+      });
+    },
   };
 
   // Search handling
   function performSearch(term: string) {
     if (!term.trim()) return;
 
-    const updatedSearches = saveSearch(term);
-    setRecentSearches(updatedSearches);
-    // router.push(`/products?q=${encodeURIComponent(term)}`);
-    setInputState((prev) => ({ ...prev, showResults: false }));
-  }
+    const searchQuery = search(term);
+    setRecentSearches(searchQuery.recentSearches);
+    console.log(`redirectURL: ${searchQuery.searchURL}`);
+    // router.push(redirectURL);
 
-  function handleSearch(e: React.FormEvent) {
-    e.preventDefault();
-    performSearch(inputState.searchTerm);
-  }
-
-  function handleSelectSearch(text: string) {
-    setInputState((prev) => ({ ...prev, searchTerm: text }));
-    performSearch(text);
+    setInputState((prev) => ({
+      ...prev,
+      searchTerm: term,
+      showResults: false,
+    }));
   }
 
   return (
-    <div className={styles.searchBarContainer} ref={searchRef}>
-      <form className={styles.searchForm} onSubmit={handleSearch}>
+    <div
+      className={`${styles.searchBarContainer} ${
+        inputState.showResults ? styles.showingDropdown : ""
+      }`}
+      ref={clickOutsideRef}
+    >
+      <form className={styles.searchForm} onSubmit={inputHandlers.search}>
         <div
           className={`${styles.searchInputWrapper} ${
             inputState.isFocused ? styles.focused : ""
@@ -102,7 +116,7 @@ function SearchBar() {
           <input
             type="text"
             className={styles.searchInput}
-            placeholder="Type the product you are looking for"
+            placeholder="What are you looking for?"
             value={inputState.searchTerm}
             onChange={inputHandlers.change}
             onFocus={inputHandlers.focus}
@@ -113,7 +127,7 @@ function SearchBar() {
               inputState.showResults ? "search-results" : undefined
             }
           />
-          {/* Cancel Input button */}
+          {/* Clear Input button */}
           {inputState.searchTerm && (
             <button
               type="button"
@@ -133,14 +147,25 @@ function SearchBar() {
             <FaSearch aria-hidden="true" />
           </button>
         </div>
+
+        {/* Cancel button for mobile view */}
+        {inputState.showResults && (
+          <button
+            type="button"
+            className={styles.cancelButton}
+            onClick={inputHandlers.cancel}
+          >
+            Cancel
+          </button>
+        )}
       </form>
 
       {inputState.showResults && (
-        <SearchResults
-          id="search-results"
+        <SearchDropDown
+          id="recent-search"
           recentSearches={recentSearches}
-          onSelectSearch={(text) => {
-            handleSelectSearch(text);
+          performSearch={(text) => {
+            performSearch(text);
           }}
         />
       )}
