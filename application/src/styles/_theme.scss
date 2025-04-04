@@ -6,6 +6,8 @@
   --foreground: #{vars.$foreground-light};
   --gray-100: #{vars.$gray-100-light};
   --gray-200: #{vars.$gray-200-light};
+  --gray-300: #{vars.$gray-300-light};
+  --white: #{vars.$white};
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,5 +16,7 @@
     --foreground: #{vars.$foreground-dark};
     --gray-100: #{vars.$gray-100-dark};
     --gray-200: #{vars.$gray-200-dark};
+    --gray-300: #{vars.$gray-300-dark};
+    --white: #{vars.$white};
   }
 }

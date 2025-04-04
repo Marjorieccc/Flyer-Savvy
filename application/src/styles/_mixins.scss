@@ -38,23 +38,3 @@
     font-size: $desktop-size;
   }
 }
-
-@mixin search-container-mobile {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: vars.$z-modal;
-  background-color: var(--background);
-  padding: vars.$spacing-sm vars.$spacing-md;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
-@mixin search-container-desktop {
-  position: relative;
-  padding: 0;
-  max-width: 45rem;
-  background-color: transparent;
-}
