@@ -92,6 +92,9 @@
 
 .resultItem {
   display: flex;
+  border: 0.0625rem solid var(--gray-200);
+  border-left: 0;
+  border-right: 0;
 }
 
 .resultButton {

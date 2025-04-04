@@ -2,24 +2,30 @@
 @use "../../styles/mixins" as mixins;
 
 .searchBarContainer {
-  position: relative;
+  position: sticky;
+  top: 0.5rem;
   width: 100%;
   margin: 0 auto;
   z-index: vars.$z-dropdown;
+  padding: vars.$spacing-xs;
+  transition: all vars.$transition-normal;
+
+  @media (min-width: vars.$breakpoint-desktop) {
+    position: relative;
+    max-width: 45rem;
+  }
 
   &.showingDropdown {
-    position: fixed;
     display: flex;
     justify-content: space-between;
     top: 0;
     left: 0;
     right: 0;
     z-index: vars.$z-modal;
-    background-color: var(--background);
-    padding: vars.$spacing-sm vars.$spacing-md;
 
-    @media (min-width: vars.$breakpoint-tablet) {
-      @include mixins.search-container-desktop;
+    @media (min-width: vars.$breakpoint-desktop) {
+      position: relative;
+      top: 0.5rem;
     }
   }
 }
@@ -37,13 +43,13 @@
   flex: 1 1 0;
   height: 2.5rem;
   padding: 0 vars.$spacing-md;
-  background-color: var(--gray-200);
+  background-color: var(--gray-100);
   border-radius: vars.$radius-lg;
   border: 0.0625rem solid var(--gray-200);
   transition: all vars.$transition-fast;
   position: relative;
 
-  @media (min-width: vars.$breakpoint-tablet) {
+  @media (min-width: vars.$breakpoint-desktop) {
     height: 3rem;
     border-radius: vars.$radius-xl;
   }
@@ -80,7 +86,7 @@
   color: var(--foreground);
   opacity: 0.6;
 
-  @media (min-width: vars.$breakpoint-tablet) {
+  @media (min-width: vars.$breakpoint-desktop) {
     width: 2rem;
     height: 2rem;
     right: 3.5rem;
@@ -107,7 +113,7 @@
     background-color vars.$transition-fast;
   flex-shrink: 0;
 
-  @media (min-width: vars.$breakpoint-tablet) {
+  @media (min-width: vars.$breakpoint-desktop) {
     width: 2.5rem;
     height: 2.5rem;
     right: 0.5rem;
@@ -116,7 +122,7 @@
   &:hover,
   &:focus {
     transform: scale(1.05);
-    background-color: vars.$color-primary-hover;
+    background-color: vars.$color-primary-600;
   }
 
   @include mixins.focus-visible;
@@ -125,7 +131,7 @@
     width: 1rem;
     height: 1rem;
 
-    @media (min-width: vars.$breakpoint-tablet) {
+    @media (min-width: vars.$breakpoint-desktop) {
       width: 1.125rem;
       height: 1.125rem;
     }
@@ -144,6 +150,7 @@
   white-space: nowrap;
   margin-left: auto;
   flex-shrink: 0;
+  animation: fadeSlideIn vars.$transition-normal forwards;
 
   &:hover,
   &:focus {
@@ -153,7 +160,19 @@
 
   @include mixins.focus-visible;
 
-  @media (min-width: vars.$breakpoint-tablet) {
+  @media (min-width: vars.$breakpoint-desktop) {
     display: none;
+  }
+}
+
+// Add keyframes for the cancel button animation
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
