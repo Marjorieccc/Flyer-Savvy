@@ -102,16 +102,16 @@
   @include mixins.flex-center;
   width: 2rem;
   height: 2rem;
-  background-color: vars.$color-primary;
+  background-color: vars.$color-primary-500;
   border: none;
   border-radius: 50%;
   position: absolute;
   right: 0.375rem;
-  cursor: pointer;
+  flex-shrink: 0;
   color: white;
+  cursor: pointer;
   transition: transform vars.$transition-fast,
     background-color vars.$transition-fast;
-  flex-shrink: 0;
 
   @media (min-width: vars.$breakpoint-desktop) {
     width: 2.5rem;
