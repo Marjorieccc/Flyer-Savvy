@@ -20,7 +20,7 @@ export async function findCurrentPriceHistory():Promise<Api.PriceHistory[] | nul
         .flat() as Server.PriceHistory[];
 
         // Transform the price histories if any are found
-        return currentPriceHistories.length>0? await Promise.all(currentPriceHistories.map(Transform.transformPriceHistory)) : null;
+        return currentPriceHistories.length>0? currentPriceHistories.map(Transform.transformPriceHistory) : null;
     }
     // Return null if no price histories are found or flyers are missing
     return null;
