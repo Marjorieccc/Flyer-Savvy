@@ -1,25 +1,39 @@
-export type Flyer = {
-    flyer_id: number;
-    valid_from: Date | null; 
-    valid_to: Date | null;  
+export interface Flyer {
+  flyerId: number;
+  validFrom: Date | null;
+  validTo: Date | null;
 }
 
-export type Product ={
-    product_id: number,
-    product_name: string | null,
-    brand: string | null,
-    image_url: string | null,
-    package_size: number | null,
-    package_unit: string | null
+export interface Product {
+  productId: number;
+  productName: string | null;
+  brand: string | null;
+  imageUrl: string | null;
+  packageSize: number | null;
+  packageUnit: string | null;
 }
 
-export type PriceHistory = {
-    price_history_id: number,
-    price: number | null,
-    unit: string | null
+export interface ProductSearch extends Product {
+  price:
+    | [
+        {
+          groceryName: string;
+          validDate: Date;
+          currentPrice: number;
+          currentPoint?: number;
+          originalPrice?: number;
+        }
+      ]
+    | null;
 }
 
-export type PointHistory ={
-    point_history_id: number,
-    point: number | null
+export interface PriceHistory {
+  priceHistoryId: number;
+  price: number | null;
+  unit: string | null;
+}
+
+export interface PointHistory {
+  pointHistoryId: number;
+  point: number | null;
 }
